@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  mongodb:
+    image:
+      mongodb/mongodb-community-server:6.0-ubi8
+    volumes:
+      - type: bind
+        source: ./configs
+        target: /etc/mongo
+      - type: bind
+        source: ./data
+        target: /data/db
+      - type: bind
+        source: ./external_data
+        target: /external_data
+    ports:
+      - 27017:27017
+    command: --config /etc/mongo/mongod.conf
+
